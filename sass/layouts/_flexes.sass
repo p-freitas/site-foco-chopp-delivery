@@ -1,0 +1,79 @@
+%flex
+  // Qual a função dos prefixos utilizados no valor do display?
+  // Qual a função da palavra reservada flex?
+
+  display: -ms-flexbox!important
+ 
+
+%flex-2
+  display: -webkit-flex!important
+  display: -ms-flexbox!important
+  display: flex!important
+
+%ex
+  @extend %flex
+  text-align: center
+  *
+    // Qual a função do flex-grow?
+    flex-grow: 1
+
+.centerex
+  @extend %ex
+  align-items: center !important
+
+.flex-box
+  @extend %flex
+  align-items: stretch
+  .col
+    margin: 5px
+    display: block
+    -ms-flex-preferred-size: 0
+    //Pra quê o flex-basis em 100%?
+    flex-basis: 100%
+    // Descreva o papel das propriedades flex abaixo
+    -webkit-box-flex: 1
+    -ms-flex-positive: 1
+    flex-grow: 1
+    -ms-flex-negative: 1
+    flex-shrink: 1
+    //Qual a vantagem de usar rem como unidade de medida?
+    padding: 0.75rem
+  &.wrap
+    //Pra que serve esse tal de flex-wrap?
+    flex-wrap: wrap
+    .col
+      //O que faz a propriedade flex-basis?
+      flex-basis: auto
+@media (max-width: 768px)
+  .flex-box
+    // Qual a razão disso?
+    display: block!important
+
+
+.flex-box-2
+  @extend %flex-2
+  align-items: stretch
+  .col
+    margin: 5px
+    display: block
+    -ms-flex-preferred-size: 0
+    //Pra quê o flex-basis em 100%?
+    flex-basis: 100%
+    // Descreva o papel das propriedades flex abaixo
+    -webkit-box-flex: 1
+    -ms-flex-positive: 1
+    flex-grow: 1
+    -ms-flex-negative: 1
+    flex-shrink: 1
+    //Qual a vantagem de usar rem como unidade de medida?
+    padding: 0.75rem
+  &.wrap
+    //Pra que serve esse tal de flex-wrap?
+    flex-wrap: wrap
+    .col
+      //O que faz a propriedade flex-basis?
+      flex-basis: auto
+@media (max-width: 768px)
+  .flex-box
+    // Qual a razão disso?
+    display: block!important

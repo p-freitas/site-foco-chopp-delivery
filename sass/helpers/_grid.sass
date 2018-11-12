@@ -1,0 +1,83 @@
+// O que é um sistema de grids? Quais são os sistemas de grids mais comuns? Existe vantagem em usar 12 colunas?
+
+$columns: 12
+
+%float-gutter
+  float: left
+  margin: 5px
+  padding: 0
+%float-false-gutter
+  float: left
+  padding: 5px
+  margin: 0
+%row-flexbox
+  flex-basis: auto
+  flex-grow: 0
+
+=float-col-to-false-gutter($size)
+  @for $i from 1 through $columns
+    .#{$size}-#{$i}
+      @extend %float-false-gutter
+      @extend %row-flexbox
+=float-col($size)
+  @for $i from 1 through $columns
+    .#{$size}-#{$i}
+      @extend %float-gutter
+      @extend %row-flexbox
+
++float-col(xs)
++float-col(sm)
++float-col(md)
++float-col(lg)
+
+=col-factory($param, $abr)
+  @media ($param)
+    @for $i from 1 through $columns
+      $num: $i / 12 * 100
+      .#{$abr}-#{$i}
+        width: calc(#{$num}% - 10px)
+      .off-#{$abr}-#{$i}
+        margin-left: calc(#{$num}% + 5px)
+    .off-#{$abr}-0
+      margin-left: 5px
+
+=col-factory-to-false-gutter($param, $abr)
+  @media ($param)
+    @for $i from 1 through $columns
+      $num: percentage($i / 12)
+      .#{$abr}-#{$i}
+        width: $num
+
++col-factory("min-width: 0px", xs)
++col-factory("min-width: 769px", sm)
++col-factory("min-width: 993px", md)
++col-factory("min-width: 1201px", lg)
+
+.false-gutter >
+  +float-col-to-false-gutter(xs)
+  +float-col-to-false-gutter(sm)
+  +float-col-to-false-gutter(md)
+  +float-col-to-false-gutter(lg)
+  +col-factory-to-false-gutter("min-width: 0px", xs)
+  +col-factory-to-false-gutter("min-width: 769px", sm)
+  +col-factory-to-false-gutter("min-width: 993px", md)
+  +col-factory-to-false-gutter("min-width: 1201px", lg)
+
+=col-row-flex-box($size)
+  @for $i from 1 through $columns
+    .#{$size}-#{$i}
+
+.row
+  width: 100%
+  &.flex-box
+    flex-wrap: wrap
+  &:after
+    content: ""
+    clear: both
+    display: block
+
+@media (max-width: 768px)
+  .row.flex-box
+    display: -webkit-flex!important
+    display: -ms-flexbox!important
+    display: flex!important

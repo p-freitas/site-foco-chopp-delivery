@@ -1,0 +1,22 @@
+%btn
+  border: 1px 
+  +border-radius(3px)
+  color: #FFF
+  cursor: pointer
+  font-family: 'Roboto',Helvetica,Arial,sans-serif
+  // Qual a relevância desse text-decoration no btn?
+  text-decoration: none
+  +transition()
+  +user-select(none)
+  @extend %hoverColored
+
+.btn
+  @extend %btn
+  background-color: #6ACF04
+  margin: 15px 0
+  padding: 6px 18px
+  font-size: 15px
+  &:hover, &:focus
+    background-color: #D1D1D1
+
+
